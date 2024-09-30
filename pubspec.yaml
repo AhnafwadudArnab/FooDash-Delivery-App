@@ -1,0 +1,55 @@
+name: FooDash_App
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+    
+
+  get: ^4.6.6
+  dots_indicator: ^2.1.1
+  curved_navigation_bar: ^1.0.3
+  email_validator: ^2.0.1
+  cupertino_icons: ^1.0.8
+  firebase_core: ^3.6.0
+  sidebarx: ^0.17.1
+  google_maps_flutter: ^2.9.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/Offers/
+    - assets/images/Orders/
+    - assets/ImagesFood/Burger/
+    - assets/ImagesFood/Drinks/
+    - assets/images/
+    - assets/images/bestfood/
+    - assets/images/menus/
+    - assets/images/popular_foods/
+    - assets/icons/
+  # - assets/images/a_dot_ham.jpeg
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Roboto-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 500
+        - asset: assets/fonts/Roboto-Black.ttf
+          weight: 600
