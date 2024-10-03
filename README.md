@@ -1,4 +1,4 @@
-⭐Food Ordering App⭐
+⭐FooDash : Food Ordering App⭐
 
 
 This project is a mobile application designed for food ordering, which allows users to browse restaurants, view popular dishes and place orders quickly and efficiently.
