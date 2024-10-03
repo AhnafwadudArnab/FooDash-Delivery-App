@@ -3,10 +3,7 @@
 
 This project is a mobile application designed for food ordering, which allows users to browse restaurants, view popular dishes and place orders quickly and efficiently.
 The app includes features like menu browsing, cart management, order placement, user profile functionalities and others.
-
-![Screenshot_2024-10-02-15-32-16-625_com example asp](https://github.com/user-attachments/assets/260f5b44-9a80-487f-8b52-6ebda514d7ae)
-![Screenshot_2024-10-02-15-32-26-439_com example asp](https://github.com/user-attachments/assets/0174a957-1639-4bf2-8a4b-df0556a3f4e7)
-![Screenshot_2024-10-02-16-20-06-710_com example asp](https://github.com/user-attachments/assets/cef0d186-cf16-437e-85d5-478a1655a847)
+![Screenshot 2024-10-03 194235](https://github.com/user-attachments/assets/7c1c9850-264a-43f6-b184-88ac06f91bc9)
 
 
 Features:
