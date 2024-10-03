@@ -3,6 +3,9 @@
 
 This project is a mobile application designed for food ordering, which allows users to browse restaurants, view popular dishes and place orders quickly and efficiently.
 The app includes features like menu browsing, cart management, order placement, user profile functionalities and others.
+
+
+
 ![Screenshot 2024-10-03 194235](https://github.com/user-attachments/assets/7c1c9850-264a-43f6-b184-88ac06f91bc9)
 
 
@@ -11,7 +14,6 @@ Features:
 Search Functionality: Users can search for restaurants or specific dishes.
 Popular Dishes Section: Displays popular dishes such as Biryani, Nachos, Avocado Chicken Salad, and more.
 Ratings & Reviews: Each dish includes ratings, reviews, and delivery information such as estimated time and distance from the user.
-
 
 3. Cart and Checkout:
 Cart Management: Items added to the cart include details such as dish price, quantity, and total cost.
