@@ -20,7 +20,7 @@
 🔸Prerequisites:
 
 
-npm (version 6 or higher),
+*npm (version 6 or higher),
 Android Studio (for Android app development)
 
 🔸Usage:
