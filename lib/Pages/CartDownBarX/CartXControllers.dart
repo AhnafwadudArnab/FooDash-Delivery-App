@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../utils/main.dart';
+import '../../main.dart';
 
 class CartXControllerS extends GetxController {
   var cartItems = <Map<String, dynamic>>[].obs; // Observable list of cart items

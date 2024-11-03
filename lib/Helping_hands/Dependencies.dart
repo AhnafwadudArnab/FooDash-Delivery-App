@@ -1,6 +1,5 @@
 
 import 'package:get/get.dart';
-
 import '../Datas/API/api_clients.dart';
 import '../Datas/Controllers/PopularProducts_controllers.dart';
 import '../Datas/Repository/Popular_products_repo.dart';

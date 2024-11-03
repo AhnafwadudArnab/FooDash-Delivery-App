@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../Widgets/Big_Contents_models.dart';
 import '../../utils/dimensions.dart';
-import '../Login_Signup/signUp.dart';
+import '../Login_Signup/sign_up.dart';
 class Onboard extends StatefulWidget {
 
   const Onboard({super.key});
@@ -76,7 +76,7 @@ class _OnboardState extends State<Onboard> {
           GestureDetector(
             onTap: (){
               if(currentIndex==contents.length-1){
-                Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>const Signup()));
+                Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=>const SignUp()));
               }
               _controller.nextPage(duration: const Duration(microseconds: 100), curve: Curves.bounceIn);
             },

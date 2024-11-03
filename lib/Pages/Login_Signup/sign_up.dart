@@ -2,20 +2,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:fooduu/Blocs/LoginBloc/LoginEvent.dart';
-import 'package:fooduu/Pages/Login_Signup/sign_up.dart';
-import 'package:fooduu/utils/dimensions.dart';
+import 'package:fooduu/Blocs/SignUpBloc/sign_up_event.dart';
 
-import '../../Blocs/LoginBloc/LogIn_Bloc.dart';
-import '../../Blocs/LoginBloc/logInState.dart';
-import '../Home_pages/BottomNavigationButtons.dart';
+import '../../Blocs/SignUpBloc/sign_up_blocks.dart';
+import '../../Blocs/SignUpBloc/sign_up_state.dart';
+import '../../utils/dimensions.dart';
+import 'Login.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class SignUp extends StatelessWidget {
+  const SignUp({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => LoginBloc(),
+      create: (_) => SignUpBloc(),
       child: Scaffold(
         body: Stack(
           children: [
@@ -37,7 +36,7 @@ class Login extends StatelessWidget {
             // White container for form fields
             Container(
               margin: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height / 3.4),
+                  top: MediaQuery.of(context).size.height / 3.6),
               height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
@@ -61,20 +60,20 @@ class Login extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    SizedBox(height: Dimension.height45),
+                    SizedBox(height: Dimension.height40),
                     Material(
                       elevation: 5.0,
                       borderRadius: BorderRadius.circular(Dimension.radius20),
                       child: Container(
                         padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                        height: MediaQuery.of(context).size.height / 2,
+                        height: MediaQuery.of(context).size.height / 1.85,//box size//
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius:
                               BorderRadius.circular(Dimension.radius20),
                         ),
-                        child: const _loginScreenState(),
+                        child: const SignUpForm(),
                       ),
                     )
                   ],
@@ -86,60 +85,79 @@ class Login extends StatelessWidget {
       ),
     );
   }
-}//UiX form end here//
-
-class _loginScreenState extends StatefulWidget {
-  const _loginScreenState();
-
-  @override
-  State<_loginScreenState> createState() => _LoginFormState();
 }
 
-class _LoginFormState extends State<_loginScreenState> {
-  final _formKey = GlobalKey<FormState>();//global key//
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({super.key});
+
+  @override
+  State<SignUpForm> createState() => _SignUpFormState();
+}
+
+class _SignUpFormState extends State<SignUpForm> {
+  final _formKey = GlobalKey<FormState>();
+  final nameTextController = TextEditingController();
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   bool isVisible = true;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: BlocListener<LoginBloc,Login_State>(listener: (context,State){
-
-          if(State is login_Success){
-           Navigator.pushReplacement(context,MaterialPageRoute(builder: (context){
-              return MyHomePage(); //home page after login//
-            }));
-          }
-          if(State is login_Failure){
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login failed: ${State.error}')));
-          }
-        },
-        child: BlocBuilder<LoginBloc,Login_State>(builder: (context,State){
-          if(State is login_Loading){
+    return BlocListener<SignUpBloc, SignupState>(
+      listener: (context, state) {
+        if (state is SignupSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Signup successful!')),
+          );
+          // Navigate to the login screen after successful signup
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const Login()),
+          );
+        } else if (state is SignupFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Signup failed: ${state.error}')),
+          );
+        }
+      },
+      child: BlocBuilder<SignUpBloc, SignupState>(
+        builder: (context, state) {
+          if (state is SignupLoading) {
             return const Center(child: CircularProgressIndicator());
           }
-          return LoginFormWidget();
-        },),
+          return SignupFormWidget();
+        },
       ),
-    ),
     );
   }
-    
-    //login form widget//
-  Widget LoginFormWidget() {
+
+  Widget SignupFormWidget() {
     return Form(
       key: _formKey,
       child: Column(
         children: [
           const SizedBox(height: 20),
           const Text(
-            "Log in",
+            "Sign Up",
             style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.bold,
               color: Colors.black,
+            ),
+          ),
+          const SizedBox(height: 20),
+          // Name field
+          TextFormField(
+            controller: nameTextController,
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Enter Name";
+              }
+              return null;
+            },
+            decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.person),
+              hintText: "Name",
             ),
           ),
           const SizedBox(height: 20),
@@ -187,10 +205,10 @@ class _LoginFormState extends State<_loginScreenState> {
             ),
           ),
           // Sign Up button with loading indicator
-          const SizedBox(height: 45),
-          BlocBuilder<LoginBloc, Login_State>(
+          SizedBox(height: Dimension.height30),
+          BlocBuilder<SignUpBloc, SignupState>(
             builder: (context, state) {
-              if (state is login_Loading) {
+              if (state is SignupLoading) {
                 return const CircularProgressIndicator();
               }
               return ElevatedButton(
@@ -200,21 +218,21 @@ class _LoginFormState extends State<_loginScreenState> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(Dimension.radius20),
                   ),
-                  minimumSize:
-                      Size(Dimension.width200, 40), // Adjust height as needed
+                  minimumSize: Size(Dimension.width200, 40), // Adjust height as needed
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    context.read<LoginBloc>().add(
-                          LoginSubmitted(
-                            email: emailTextController.text,
-                            password: passwordTextController.text,
-                          ) as LogIn_Event,
-                        );
+                    context.read<SignUpBloc>().add(
+                      SignupSubmitted(
+                        name: nameTextController.text,
+                        email: emailTextController.text,
+                        password: passwordTextController.text,
+                      ) as SignupEvent,
+                    );
                   }
                 },
                 child: Text(
-                  "Login",
+                  "Sign Up",
                   style: TextStyle(
                     fontSize: Dimension.font26,
                     fontWeight: FontWeight.bold,
@@ -231,8 +249,7 @@ class _LoginFormState extends State<_loginScreenState> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const SignUp(),
-                  
+                  builder: (context) => const Login(),
                 ),
               );
             },
@@ -240,14 +257,14 @@ class _LoginFormState extends State<_loginScreenState> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "Don't have an account? ",
+                  "Already have an account? ",
                   style: TextStyle(
                     color: Colors.black,
                   ),
                 ),
                 SizedBox(width: Dimension.width4),
                 Text(
-                  "Sign up",
+                  "Sign in",
                   style: TextStyle(
                     fontSize: Dimension.font20,
                     color: Colors.black,
@@ -263,23 +280,18 @@ class _LoginFormState extends State<_loginScreenState> {
   }
 }
 
-class LoginSubmitted extends LogIn_Event {
+// Event class for SignupSubmitted
+class SignupSubmitted extends SignupEvent {
+  final String name;
   final String email;
-
   final String password;
 
-  const LoginSubmitted({required this.email, required this.password});
+  const SignupSubmitted({
+    required this.name,
+    required this.email,
+    required this.password,
+  });
 
   @override
-  List<Object> get props => [email, password];
-}
-
-// Add your imports here
-
-class LoginButtonPressed extends LogIn_Event {
-  final String email;
-
-  final String password;
-
-  const LoginButtonPressed({required this.email, required this.password});
+  List<Object> get props => [name, email, password];
 }

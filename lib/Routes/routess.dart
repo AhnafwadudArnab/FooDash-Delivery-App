@@ -33,7 +33,8 @@ class RoutesHelper {
       name: popularFoodDetails,
       page: () {
         var pageId = Get.parameters['pageId'];
-        return PopularFoodDetails(pageId: int.parse(pageId!)); // Corrected int.parse usage
+        return PopularFoodDetails(pageId: int.parse(pageId!),); 
+        // Corrected int.parse usage
       },
       transition: Transition.fadeIn,
     ),
@@ -43,7 +44,7 @@ class RoutesHelper {
       name: recommendedFood,
       page: () {var pageId = Get.parameters['pageId'];
       return RecommendedFood(pageId: int.parse(pageId!));
-         // Added const for better optimization
+        // Added const for better optimization
       },
       transition: Transition.fadeIn,
     ),

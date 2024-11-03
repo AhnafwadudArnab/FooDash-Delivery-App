@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../Home_pages/Utility/SideXbar/newCArtPg.dart';
+import '../Utility/SideXbar/newCArtPg.dart';
 
 class Order extends StatefulWidget {
   const Order({super.key});

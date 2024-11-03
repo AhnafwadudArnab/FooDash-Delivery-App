@@ -1,6 +1,7 @@
-import 'package:FooDash_App/Models/product_models.dart';
+
 import 'package:get/get.dart';
 
+import '../../Models/product_models.dart';
 import '../Repository/Popular_products_repo.dart';
 
 class PopularProductController extends GetxController {

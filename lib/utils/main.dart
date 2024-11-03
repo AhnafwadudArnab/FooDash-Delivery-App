@@ -1,10 +1,20 @@
+import 'dart:developer';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fooduu/Blocs/SignUpBloc/sign_up_blocks.dart';
+import 'package:fooduu/firebase_options.dart';
 import 'package:get/get.dart';
-import '../Helping_hands/Theme_controllers.dart';
-import '../Pages/Downbar/BottomNavigationButtons.dart';
-import '../Routes/routess.dart';
+import '../Blocs/LoginBloc/LogIn_Bloc.dart';
+import '../Pages/OnBoards/Onboard.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  } catch (e) {
+    log('Invalid Error! $e');
+  }
   runApp(const MyApp());
 }
 
@@ -13,16 +23,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MultiBlocProvider(providers: [
+      BlocProvider(create: (_)=> SignUpBloc()),
+      BlocProvider(create: (_)=> LoginBloc()),
+    ],
+        child:GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'FooDash',
-      theme: ThemeData.light(), // Light theme
-      darkTheme: customDarkTheme, // Custom dark theme
-      themeMode: ThemeMode.system, // Automatically switch themes based on system setting
-      home: const MyHomePage(),
-     // home: Onboard(),
-      initialRoute: RoutesHelper.initial,
-      getPages: RoutesHelper.routes,
-    );
+      theme: ThemeData.light(),
+      themeMode: ThemeMode.system,
+      home: const Onboard(),
+    ));
   }
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:FooDash_App/widgets/small_text.dart';
 import '../utils/colors.dart';
 import '../utils/dimensions.dart';
 import 'Big_text.dart';
 import 'Icon_and_text_Widgets.dart';
+import 'small_text.dart';
 class AppColumnSpacebetween extends StatelessWidget {
   final String text;
 

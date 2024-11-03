@@ -4,7 +4,7 @@ import '../../Routes/routess.dart';
 import '../../Widgets/Big_text.dart';
 import '../../utils/colors.dart';
 import '../../utils/dimensions.dart';
-import '../Home_pages/Utility/SideXbar/newCArtPg.dart';
+import '../Utility/SideXbar/newCArtPg.dart';
 List<Map<String, String>> listfoodItems = [
   {
     "image": "assets/images/bestfood/ic_best_food_1.jpeg",

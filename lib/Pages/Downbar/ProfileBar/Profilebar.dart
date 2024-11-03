@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../utils/dimensions.dart';
-import '../../Home_pages/Utility/SideXbar/Address_page.dart';
-import '../../Home_pages/Utility/SideXbar/Favourite_page.dart';
-import '../../Home_pages/Utility/SideXbar/Payment.dart';
-import '../../Home_pages/Utility/SideXbar/SettingsBar.dart';
-import '../../Home_pages/Utility/SideXbar/help_center_page.dart';
 import '../../OnBoards/Onboard.dart';
-import '../BottomNavigationButtons.dart';
+import '../../Home_pages/BottomNavigationButtons.dart';
+import '../../Utility/SideXbar/Address_page.dart';
+import '../../Utility/SideXbar/Favourite_page.dart';
+import '../../Utility/SideXbar/Payment.dart';
+import '../../Utility/SideXbar/SettingsBar.dart';
+import '../../Utility/SideXbar/help_center_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
