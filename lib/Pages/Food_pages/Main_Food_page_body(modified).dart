@@ -1,4 +1,5 @@
 import 'dart:async'; // Import for Timer
+import 'dart:developer';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -208,7 +209,12 @@ class _FoodPageBody2State extends State<FoodPageBody2> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    Get.toNamed(RoutesHelper.getRecommendedFood(index));
+                    if (index < listfoodItems.length) {
+                      log('Navigating to recommended food at index: $index');
+                      Get.toNamed(RoutesHelper.getRecommendedFood(index));
+                    } else {
+                      log('Navigation error: Index out of bounds or null item at index $index');
+                    }
                   },
                   child: Container(
                     margin: EdgeInsets.only(
@@ -324,8 +330,13 @@ class _FoodPageBody2State extends State<FoodPageBody2> {
     return Transform(
       transform: matrix,
       child: GestureDetector(
-        onTap: () {
-          Get.toNamed(RoutesHelper.getPopularFoodDetails(index));
+       onTap: () {
+          if (foodItem["name"] != null) {
+            log('Navigating to popular food details for item: ${foodItem["name"]}');
+            Get.toNamed(RoutesHelper.getPopularFoodDetails(index));
+          } else {
+            log('Navigation error: Food item name is null for index $index');
+          }
         },
         child: Stack(
           children: [

@@ -202,7 +202,7 @@ class PopularFoodDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     try {
       // Implement actual UI and logic for PopularFoodDetails based on foodId
-      return Center(child: Text('Popular Food Details for food ID ${foodId ?? 'unknown'}'));
+      return Center(child: Text('Popular Food Details for food ID ${foodId}'));
     } catch (e) {
       return Center(
         child: Text(

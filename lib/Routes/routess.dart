@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import '../Pages/CartDownBarX/Cart.dart';
 import '../Pages/Food_pages/Main_Food_Page_Body.dart'; // Updated the file name to be consistent
 import '../Pages/Food_pages/Popular_food_pages(details).dart';
-import '../Pages/Food_pages/Recommende_food_pages.dart'; // Updated the file name to be consistent
+import '../Pages/Food_pages/Recommende_food_pages.dart';
+import '../Pages/Utility/SideXbar/newCArtPg.dart'; // Updated the file name to be consistent
 
 class RoutesHelper {
   // Route constants
@@ -50,7 +50,7 @@ class RoutesHelper {
     ),
     GetPage(
       name: '/cart',
-      page: () => const CartPageContent(),
+      page: () =>  Mycart_Page(),
     ),
 
   ];
